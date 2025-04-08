@@ -7,10 +7,12 @@ public class Evento {
 
     private String nome;
     private LocalDate data;
+    private TipoEvento tipoEvento;
+    private String codice;
 
-    private enum TipoEvento {CONCERTO, CONFERENZA, WORKSHOP, SPORT}
+    public enum TipoEvento {CONCERTO, CONFERENZA, WORKSHOP, SPORT}
 
-    public Evento(String nome, LocalDate data) {
+    public Evento(String nome, LocalDate data, TipoEvento tipoEvento) {
         if (nome == null || nome.isEmpty()) {
             throw new IllegalArgumentException("Il nome dell'evento non può essere nullo o vuoto.");
         }
@@ -20,6 +22,8 @@ public class Evento {
             throw new DateTimeException("La data non può essere nel passato");
         }
         this.data = data;
+        this.tipoEvento = tipoEvento;
+        this.codice = generaCodiceUnivoco();
     }
 
     public String getNome() {
@@ -30,12 +34,16 @@ public class Evento {
         return data;
     }
 
+    public TipoEvento getTipoEvento() {
+        return tipoEvento;
+    }
+
     public String generaCodiceUnivoco() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         String dataFormattata = data.format(formatter);
         Random random = new Random();
         int numero = random.nextInt(100, 999);
-        return "EVT-" +  dataFormattata + "-" + numero;
+        return "EVT-" + dataFormattata + "-" + numero;
     }
 
     public String formattaNome(String nome) {
@@ -56,5 +64,14 @@ public class Evento {
             converted.append(ch);
         }
         return converted.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Evento{" +
+                "nome='" + nome + '\'' +
+                ", data=" + data +
+                ", tipoEvento=" + tipoEvento +
+                '}';
     }
 }
