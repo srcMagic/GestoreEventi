@@ -22,6 +22,6 @@ public class Main {
 
         System.out.println("Eventi di una determinata data : " + gestoreEventi.cercaPerData(LocalDate.of(2025, 4, 10)));
         System.out.println("Eventi per tipo : " + gestoreEventi.cercaPerTipo(Evento.TipoEvento.SPORT));
-        System.out.println("Nome evento1 : " + evento1.formattaNome("musica classica"));
+        System.out.println("Nome evento1 : " + evento1.formattaNome(evento1.getNome()));
     }
 }
