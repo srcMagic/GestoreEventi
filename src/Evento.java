@@ -23,7 +23,6 @@ public class Evento {
         }
         this.data = data;
         this.tipoEvento = tipoEvento;
-        this.codice = generaCodiceUnivoco();
     }
 
     public String getNome() {
