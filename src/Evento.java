@@ -31,10 +31,30 @@ public class Evento {
     }
 
     public String generaCodiceUnivoco() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String dataFormattata = data.format(formatter);
         Random random = new Random();
         int numero = random.nextInt(100, 999);
-        return "EVT-" + " " + dataFormattata + " " + numero;
+        return "EVT-" +  dataFormattata + "-" + numero;
+    }
+
+    public String formattaNome(String nome) {
+        if (nome.length() > 50) {
+            nome = nome.substring(0, 50) + "...";
+        }
+        StringBuilder converted = new StringBuilder();
+        boolean convertNext = true;
+        for (char ch : nome.toCharArray()) {
+            if (Character.isSpaceChar(ch)) {
+                convertNext = true;
+            } else if (convertNext) {
+                ch = Character.toTitleCase(ch);
+                convertNext = false;
+            } else {
+                ch = Character.toLowerCase(ch);
+            }
+            converted.append(ch);
+        }
+        return converted.toString();
     }
 }
