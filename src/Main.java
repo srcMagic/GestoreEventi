@@ -17,11 +17,11 @@ public class Main {
 
         System.out.println("Lista degli eventi : ");
         for (Evento evento : gestoreEventi.listaEventi) {
-            System.out.println(evento);
+            System.out.println(evento.getNome() + " " + evento.generaCodiceUnivoco());
         }
 
-        System.out.println("Eventi di una determinata data : " +gestoreEventi.cercaPerData(LocalDate.of(2025, 4, 10)));
-        System.out.println("Eventi per tipo : " +gestoreEventi.cercaPerTipo(Evento.TipoEvento.SPORT));
+        System.out.println("Eventi di una determinata data : " + gestoreEventi.cercaPerData(LocalDate.of(2025, 4, 10)));
+        System.out.println("Eventi per tipo : " + gestoreEventi.cercaPerTipo(Evento.TipoEvento.SPORT));
         System.out.println("Nome evento1 : " + evento1.formattaNome("musica classica"));
     }
 }

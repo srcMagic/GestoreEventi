@@ -23,6 +23,7 @@ public class Evento {
         }
         this.data = data;
         this.tipoEvento = tipoEvento;
+
     }
 
     public String getNome() {
